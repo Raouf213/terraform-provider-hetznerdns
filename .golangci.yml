@@ -1,0 +1,85 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - asciicheck
+    - contextcheck
+    - copyloopvar
+    - dupword
+    - durationcheck
+    - errcheck
+    - forbidigo
+    - forcetypeassert
+    - gocheckcompilerdirectives
+    - gochecknoglobals
+    - gochecknoinits
+    - gocognit
+    - gocritic
+    - godot
+    - gomoddirectives
+    - gosec
+    - govet
+    - ineffassign
+    - lll
+    - makezero
+    - mirror
+    - misspell
+    - nilerr
+    - nlreturn
+    - noctx
+    - nolintlint
+    - nonamedreturns
+    - perfsprint
+    - prealloc
+    - predeclared
+    - staticcheck
+    - tagalign
+    - tagliatelle
+    - testifylint
+    - unconvert
+    - unparam
+    - unused
+    - wastedassign
+    - wrapcheck
+    - wsl
+  settings:
+    lll:
+      line-length: 160
+      tab-width: 4
+    tagliatelle:
+      case:
+        rules:
+          json: snake
+          tfsdk: snake
+        use-field-name: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - dupword
+          - funlen
+        path: _test\.go
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

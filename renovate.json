@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices"
+  ],
+  "timezone": "Europe/Berlin",
+  "schedule": ["* 1-6 * * *"],
+  "dependencyDashboardLabels": ["Kind/Dependency"],
+  "labels": ["Kind/Dependency"],
+  "postUpdateOptions": ["gomodTidy", "gomodUpdateImportPaths"],
+  "packageRules": [
+    {
+        "matchUpdateTypes": ["major"],
+        "minimumReleaseAge": "2 days"
+    },
+    {
+        "matchUpdateTypes": ["minor"],
+        "minimumReleaseAge": "1 days"
+    },
+    {
+        "matchUpdateTypes": ["patch", "pin"],
+        "minimumReleaseAge": "1 days",
+        "automerge": true
+    }
+  ]
+}
